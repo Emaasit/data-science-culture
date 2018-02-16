@@ -52,8 +52,8 @@ dependencies:
 - traitlets=4.3.2=py36_0
 - wcwidth=0.1.7=py36_0
 - webencodings=0.5=py36_0
-# - yaml=0.1.7=0
-# - zeromq=4.2.3=2
+- yaml=0.1.7=0
+- zeromq=4.2.3=2
 - rise=5.2.0=py36_0
 - ca-certificates=2017.08.26=ha1e5d58_0
 - cctools=895=h7512d6f_0
