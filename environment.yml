@@ -57,7 +57,7 @@ dependencies:
 - rise=5.2.0
 - bokeh=0.12.13
 - ca-certificates=2017.08.26
-- cctools=895
+# - cctools=895
 - certifi=2018.1.18
 - clang=4.0.1
 - clang_osx-64=4.0.1
