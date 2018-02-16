@@ -1,2 +1,3 @@
-# data-science-culture
-Building a Data Science culture
+# Building a Data Science Culture  
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Emaasit/data-science-culture/master)
+
