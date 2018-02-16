@@ -4,7 +4,7 @@ channels:
 - conda-forge
 - defaults
 dependencies:
-- appnope=0.1.0=py36_0
+# - appnope=0.1.0=py36_0
 - bleach=2.0.0=py_1
 - decorator=4.1.2=py36_0
 - entrypoints=0.2.3=py36_1
@@ -52,38 +52,11 @@ dependencies:
 - traitlets=4.3.2=py36_0
 - wcwidth=0.1.7=py36_0
 - webencodings=0.5=py36_0
-- yaml=0.1.7=0
+# - yaml=0.1.7=0
 - zeromq=4.2.3=2
 - rise=5.2.0=py36_0
-- ca-certificates=2017.08.26=ha1e5d58_0
-- cctools=895=h7512d6f_0
-- certifi=2018.1.18=py36_0
-- clang=4.0.1=h662ec87_0
-- clang_osx-64=4.0.1=h1ce6c1d_8
-- clangxx=4.0.1=hc9b4283_0
-- clangxx_osx-64=4.0.1=h22b1bf0_8
-- compiler-rt=4.0.1=h5487866_0
-- cycler=0.10.0=py36hfc81398_0
-- freetype=2.8=h12048fb_1
-- h5py=2.7.1=py36h39cdac5_0
-- hdf5=1.10.1=ha036c08_1
-- intel-openmp=2018.0.0=h8158457_8
-- joblib=0.11=py36_0
-- ld64=274.2=h7c2db76_0
-- libcxx=4.0.1=h579ed51_0
-- libcxxabi=4.0.1=hebd6815_0
-- libedit=3.1=hb4e282d_0
-- libffi=3.2.1=h475c297_4
-- libgfortran=3.0.1=h93005f0_2
-- libpng=1.6.34=he12f830_0
-- llvm=4.0.1=hc748206_0
-- llvm-lto-tapi=4.0.1=h6701bc3_0
 - matplotlib=2.1.2=py36h6d6146d_0
-- mkl=2018.0.1=hfbd8650_4
-- mkl-service=1.1.2=py36h7ea6df4_4
-- ncurses=6.0=hd04f020_2
 - numpy=1.14.0=py36h8a80b8c_1
-- openssl=1.0.2n=hdbc3d79_0
 - pandas=0.22.0=py36h0a44026_0
 - patsy=0.5.0=py36_0
 - pip=9.0.1=py36h1555ced_4
