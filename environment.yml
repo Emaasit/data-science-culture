@@ -4,7 +4,7 @@ channels:
 - conda-forge
 - defaults
 dependencies:
-- appnope=0.1.0
+# - appnope=0.1.0
 - bleach=2.0.0
 - decorator=4.1.2
 - entrypoints=0.2.3
@@ -57,30 +57,10 @@ dependencies:
 - rise=5.2.0
 - bokeh=0.12.13
 - ca-certificates=2017.08.26
-- cctools=895
+# - cctools=895
 - certifi=2018.1.18
-- clang=4.0.1
-- clang_osx-64=4.0.1
-- clangxx=4.0.1
-- clangxx_osx-64=4.0.1
-- compiler-rt=4.0.1
-- cycler=0.10.0
-- freetype=2.8
-- h5py=2.7.1
-- hdf5=1.10.1
-- intel-openmp=2018.0.0
 - ipywidgets=7.1.1
 - joblib=0.11
-- ld64=274.2
-- libcxx=4.0.1
-- libcxxabi=4.0.1
-- libedit=3.1
-- libffi=3.2.1
-- libgfortran=3.0.1
-- libpng=1.6.34
-- llvm=4.0.1
-- llvm-lto-tapi=4.0.1
-- matplotlib=2.1.2
 - mkl=2018.0.1
 - mkl-service=1.1.2
 - ncurses=6.0
