@@ -1,0 +1,1067 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{01-post-03-2018}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{\# Gaussian Processes with Spectral Mixture Kernels to
+Implicitly Capture Hidden Structure from
+Data}\label{gaussian-processes-with-spectral-mixture-kernels-to-implicitly-capture-hidden-structure-from-data}
+
+    \textbf{(Note: Cross-posted with the
+\href{https://wp.me/p7rVtH-1Fv}{Haystax Technology Blog}.)}
+
+Several scientific fields such as insider-threat detection,
+highway-safety planning, often lack sufficient amounts of time-series
+training data for the purpose of scientific discovery. Moreover, the
+available limited data are quite noisy.~For instance Greitzer and
+Ferryman (2013) state that ''ground truth'' data on actual insider
+behavior is typically either not available or is limited. In some cases,
+one might acquire real data, but for privacy reasons, there is no
+attribution of any individuals relating to abuses or offenses i.e.,
+there is no ground truth. The data may contain insider threats, but
+these are not identified or knowable to the researcher (Greitzer and
+Ferryman, 2013; Gheyas and Abdallah, 2016).In highway-safety planning,
+Veeramisti (2016) mentions that Departments of Transportation (DOTs)
+only recently started collecting monthly highway-crash data because of
+the high cost and extensive process of collecting the required data.
+
+\subsection{The Problem}\label{the-problem}
+
+Having limited and quite noisy data for insider-threat detection and
+highway-safety planning presents a major challenge when estimating
+time-series models that are robust to overfitting and have
+well-calibrated uncertainty estimates. Most of the current literature in
+time-series modeling in these scientific fields is associated with two
+major limitations.
+
+First, the methods involve visualizing the time series for noticeable
+structure and patterns such as periodicity, smoothness,
+growing/decreasing trends and then hard-coding these patterns into the
+statistical models during formulation. This approach is suitable for
+large datasets where more data typically provides more information to
+learn expressive structure. Given limited amounts of data, such
+expressive structure may not be easily noticeable. For instance, the
+figure below shows monthly attachment size in emails (in Gigabytes) sent
+by an insider from their employee account to their home account. Trends
+such as periodicity, smoothness, growing/decreasing trends are not
+easily noticeable.
+
+Second, most of the current literature focuses on parametric models that
+impose strong restrictive assumptions by pre-specifying the functional
+form and number of parameters. Pre-specifying a functional form for a
+time-series model could lead to either overly complex model
+specifications or simplistic models. It is difficult to know \emph{a
+priori} the most appropriate function to use for modeling sophisticated
+insider-threat behavior or highway-crash scenarios that involve complex
+hidden patterns and many other influencing factors.
+
+\subsubsection{Source code}\label{source-code}
+
+For the impatient reader, two options are provided below to access the
+source code used for empirical analyses:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The entire project (code, notebooks, data, and results) can be found
+  \href{https://github.com/Emaasit/long-range-extrapolation}{here on
+  GitHub}.
+\end{enumerate}
+
+2.~Click the binder icon below to open the notebooks in a web browser
+and explore the entire project without downloading and installing any
+software.
+
+\href{https://mybinder.org/v2/gh/Emaasit/long-range-extrapolation/master?urlpath=lab}{\includegraphics{https://mybinder.org/badge.svg}}
+
+\subsection{Data Science Questions}\label{data-science-questions}
+
+Given the above limitations in the current state-of-art, this study
+formulated the following three Data Science questions. Given limited and
+quite noisy time-series data for insider-threat detection and
+highway-safety planning, is it possible to perform:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  pattern discovery without hard-coding trends into statistical models
+  during formulation?
+\item
+  model estimation that precludes pre-specifying a functional form?
+\item
+  model estimation that is robust to overfitting and has well-calibrated
+  uncertainty estimates?
+\end{enumerate}
+
+\subsection{Hypothesis}\label{hypothesis}
+
+To answer these three Data Science questions and address the
+above-described limitations, this study formulated the following
+hypothesis:
+
+This study hypothesizes that by leveraging current state-of-the-art
+innovations in nonparametric Bayesian methods, such as Gaussian
+processes with spectral mixture kernels, it is possible to perform
+pattern discovery without prespecifying functional forms and hard-coding
+trends into statistical models.
+
+\subsection{Methodology}\label{methodology}
+
+To test the above hypothesis, a nonparametric Bayesian approach was
+proposed to implicitly capture hidden structure from time series having
+limited data. The proposed model, a Gaussian process with a spectral
+mixture kernel, precludes the need to pre-specify a functional form and
+hard code trends, is robust to overfitting and has well-calibrated
+uncertainty estimates.
+
+Mathematical details of the proposed model formulation are described in
+a corresponding paper that can be found on arXiv through the link below:
+
+\begin{itemize}
+\tightlist
+\item
+  Emaasit, D. and Johnson, M. (2018).
+  \href{https://arxiv.org/abs/1803.05867}{Capturing Structure Implicitly
+  from Noisy Time-Series having Limited Data}. arXiv preprint
+  arXiv:1803.05867.
+\end{itemize}
+
+A Brief description of the fundamental concepts of the proposed
+methodology is as follows. Consider for each data point, \(i\), that
+\(y_i\) represents the attachment size in emails sent by an insider to
+their home account and \(x_i\) is a temporal covariate such as month.
+The task is to estimate a latent function \(f\), which maps input data,
+\(x_i\), to output data \(y_i\) for \(i\) = 1, 2, \(\ldots{}\), \(N\),
+where \(N\) is the total number of data points. Each of the input data
+\(x_i\) is of a single dimension \(D = 1\), and \(\textbf{X}\) is a
+\(N\) x \(D\) matrix with rows \(x_i\).
+
+The observations are assumed to satisfy:
+
+\begin{equation}\label{eqn:additivenoise}
+y_i = f(x_i) + \varepsilon, \quad where \, \, \varepsilon \sim \mathcal{N}(0, \sigma_{\varepsilon}^2)
+\end{equation}
+
+The noise term, \(\varepsilon\), is assumed to be normally distributed
+with a zero mean and variance, \(\sigma_{\varepsilon}^2\). Latent
+function \(f\) represents hidden underlying trends that produced the
+observed time-series data.
+
+Given that it is difficult to know \(\textit{a priori}\) the most
+appropriate functional form to use for \(f\), a prior distribution,
+\(p(\textbf{f})\), over an infinite number of possible functions of
+interest is formulated. A natural prior over an infinite space of
+functions is a Gaussian process prior (Williams and Rasmussen, 2006). A
+GP is fully parameterized by a mean function, \(\textbf{m}\), and
+covariance function, \(\textbf{K}_{N,N}\), denoted as:
+
+\begin{equation}\label{eqn:gpsim}
+\textbf{f} \sim \mathcal{GP}(\textbf{m}, \textbf{K}_{N,N}),
+\end{equation}
+
+The posterior distribution over the unknown function evaluations,
+\(\textbf{f}\), at all data points, \(x_i\), was estimated using Bayes
+theorem as follows:
+
+\begin{equation}\label{eqn:bayesinfty}
+\begin{aligned}
+p(\textbf{f} \mid \textbf{y},\textbf{X}) &= \frac{p(\textbf{y} \mid \textbf{f}, \textbf{X}) \, p(\textbf{f})}{p(\textbf{y} \mid \textbf{X})}, \\
+&= \frac{p(\textbf{y} \mid \textbf{f}, \textbf{X}) \, \mathcal{N}(\textbf{f} \mid \textbf{m}, \textbf{K}_{N,N})}{p(\textbf{y} \mid \textbf{X})},
+\end{aligned}
+\end{equation}
+
+where:
+
+\begin{aligned}
+p(\textbf{f}\mid \textbf{y},\textbf{X}) &= \text{the posterior distribution of functions that best explain the response variable, given the covariates} \\
+p(\textbf{y} \mid \textbf{f}, \textbf{X}) &= \text{the likelihood of response variable, given the functions and covariates} \\ 
+p(\textbf{f}) &= \text{the prior over all possible functions of the response variable} \\
+p(\textbf{y} \mid \textbf{X}) &= \text{the data (constant)}
+\end{aligned}
+
+A spectral mixture kernel was proposed for the covariance function,
+\(\textbf{K}_{N,N}\). The resulting posterior,
+\(p(\textbf{f}\mid \textbf{y},\textbf{X})\) is a Gaussian process
+composed of a distribution of possible functions that best explain the
+time-series pattern.
+
+    \subsection{Experiments}\label{experiments}
+
+    \subsubsection{The setup}\label{the-setup}
+
+Let's first install some python packages that we shall use for our
+analysis. Also we shall set up our plotting requirements.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}context}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{notebook}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale} \PY{o}{=} \PY{l+m+mf}{1.1}\PY{p}{)}
+        \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{12345}\PY{p}{)}
+        \PY{n}{rc} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{xtick.labelsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ytick.labelsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axes.labelsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{font.size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lines.linewidth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mf}{4.0}\PY{p}{,} 
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lines.markersize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{font.family}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{serif}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{font.serif}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{savefig.dpi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{200}\PY{p}{,}
+              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.usetex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{False}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{legend.fontsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mf}{40.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axes.titlesize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{figure.figsize}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{24}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{]}\PY{p}{\PYZcb{}}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{rc} \PY{o}{=} \PY{n}{rc}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{darkgrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{interactiveshell} \PY{k}{import} \PY{n}{InteractiveShell}
+        \PY{n}{InteractiveShell}\PY{o}{.}\PY{n}{ast\PYZus{}node\PYZus{}interactivity} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k+kn}{import} \PY{n+nn}{gpflow}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/demaasit/anaconda3/lib/python3.6/importlib/\_bootstrap.py:219: RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast\_tensor\_util' does not match runtime version 3.6
+  return f(*args, **kwds)
+
+    \end{Verbatim}
+
+    \subsubsection{Raw data and sample
+formation}\label{raw-data-and-sample-formation}
+
+The insider-threat data used for empirical analysis in this study was
+provided by the computer emergency response team (CERT) division of the
+software engineering institute (SEI) at Carnegie Mellon University. The
+particular insider threat focused on is the case where a known insider
+sent information as email attachments from their work email to their
+home email.
+
+First, let's read in the data using \texttt{pandas}, view the first
+three records and the structure of the resulting \texttt{pandas}
+dataframe.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{email\PYZus{}filtered} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../data/emails/email\PYZus{}filtered.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{parse\PYZus{}dates}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{email\PYZus{}filtered}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{n}{n} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:}                          id                date     user       pc  \textbackslash{}
+        0  \{D0V4-N9KM15BF-0512LLVP\} 2010-01-04 07:36:48  BTR2026  PC-9562   
+        1  \{L5E5-J1HB80OY-9539AOEC\} 2010-01-04 07:38:18  BTR2026  PC-9562   
+        2  \{Q4V7-V6BR00TZ-5209UVDX\} 2010-01-04 07:53:35  BTR2026  PC-9562   
+        
+                                       to                             cc  bcc  \textbackslash{}
+        0  Thaddeus.Brett.Daniel@dtaa.com  Zorita.Angela.Wilson@dtaa.com  NaN   
+        1       Beau.Todd.Romero@dtaa.com                            NaN  NaN   
+        2      Bianca-Clark@optonline.net                            NaN  NaN   
+        
+                                from activity   size attachments  \textbackslash{}
+        0  Beau.Todd.Romero@dtaa.com     Send  23179         NaN   
+        1  Marsh\_Travis@raytheon.com     View  17047         NaN   
+        2        Beau\_Romero@aol.com     Send  26507         NaN   
+        
+                                                     content  
+        0  On November 25, general Savary was sent to the{\ldots}  
+        1  Early in the morning of May 27, a boat crossed{\ldots}  
+        2  The Americans never held up their side of the {\ldots}  
+\end{Verbatim}
+            
+    Our \texttt{pandas} dataframe comprises columns that we are interested
+in such as "user" (username), "date", "to" (the recipient email address)
+and "size" (attachment size) of emails.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{email\PYZus{}filtered}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 11920 entries, 0 to 11919
+Data columns (total 12 columns):
+id             11920 non-null object
+date           11920 non-null datetime64[ns]
+user           11920 non-null object
+pc             11920 non-null object
+to             11920 non-null object
+cc             6101 non-null object
+bcc            593 non-null object
+from           11920 non-null object
+activity       11920 non-null object
+size           11920 non-null int64
+attachments    3809 non-null object
+content        11920 non-null object
+dtypes: datetime64[ns](1), int64(1), object(10)
+memory usage: 1.1+ MB
+
+    \end{Verbatim}
+
+    Let's filter data for a particular known insider with user ID "CDE1846"
+and summarize the total attachment size of emails by month. This results
+into 17 data points ranging from January 2010 to May 2011.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{df\PYZus{}insider} \PY{o}{=} \PY{n}{email\PYZus{}filtered}\PY{p}{[}\PY{n}{email\PYZus{}filtered}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{user}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{CDE1846}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{emails\PYZus{}per\PYZus{}month} \PY{o}{=} \PY{n}{df\PYZus{}insider}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{n}{rule} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+        \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{emails\PYZus{}per\PYZus{}month}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n+nb}{format} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{Y\PYZhy{}}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{o}{.}\PY{n}{y} \PY{o}{=} \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{o}{.}\PY{n}{y}\PY{o}{/}\PY{l+m+mf}{1e6}
+        \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
+        \PY{n}{emails\PYZus{}per\PYZus{}month}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}          ds           y
+        0   2010-01  117.809274
+        1   2010-02  112.461320
+        2   2010-03  134.592245
+        3   2010-04  148.911866
+        4   2010-05   80.689085
+        5   2010-06  128.024029
+        6   2010-07  115.046041
+        7   2010-08  142.607937
+        8   2010-09  121.728119
+        9   2010-10  126.041467
+        10  2010-11   80.338345
+        11  2010-12  113.142879
+        12  2011-01   95.485553
+        13  2011-02   88.279993
+        14  2011-03  148.193802
+        15  2011-04  221.337135
+        16  2011-05  146.220533
+\end{Verbatim}
+            
+    Let's visualize this data using \texttt{matplotlib} and
+\texttt{seaborn}. The resulting figure shows no interesting insights
+just yet.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{p}{,} \PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{blue}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{saturation} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{labels} \PY{o}{=} \PY{n}{emails\PYZus{}per\PYZus{}month}\PY{o}{.}\PY{n}{ds}\PY{p}{,} \PY{n}{rotation} \PY{o}{=} \PY{l+m+mi}{45}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total size of emails in GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Now let's look at the case where the insider sent email IP from their
+employee account to their home account. Visualizing this data shows some
+interesting trends towards the end of the analysis period. The
+attachment size increases drastically in March and April of 2011.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{df\PYZus{}insider\PYZus{}non\PYZus{}org} \PY{o}{=} \PY{n}{df\PYZus{}insider}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{df\PYZus{}insider}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{to}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dtaa.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+        \PY{n}{df\PYZus{}insider\PYZus{}ewing} \PY{o}{=} \PY{n}{df\PYZus{}insider\PYZus{}non\PYZus{}org}\PY{p}{[}\PY{n}{df\PYZus{}insider\PYZus{}non\PYZus{}org}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{to}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ewing\PYZus{}Carlos@comcast.net}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df\PYZus{}insider\PYZus{}ewing}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{df}\PY{o}{.}\PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{y}\PY{o}{/}\PY{l+m+mf}{1e6}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{df}\PY{p}{,} \PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{blue}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{saturation} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{labels} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{ds}\PY{p}{,} \PY{n}{rotation} \PY{o}{=} \PY{l+m+mi}{45}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total size of emails in GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Empirical analysis}\label{empirical-analysis}
+
+    Let's drop the anormalous data points from our dataframe so that we can
+train a model for the normal behaviour and then create a training
+dataset of size = 11 and remaining data our for testing the estimated
+model.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{]}\PY{p}{)}
+        \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{11}
+        \PY{n}{X\PYZus{}complete} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{X\PYZus{}complete}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{test\PYZus{}size}\PY{p}{,} \PY{p}{]}
+        \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{X\PYZus{}complete}\PY{p}{[}\PY{n}{test\PYZus{}size}\PY{p}{:}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{]}
+        \PY{n}{Y\PYZus{}complete} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{y}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{Y\PYZus{}train} \PY{o}{=} \PY{n}{Y\PYZus{}complete}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{test\PYZus{}size}\PY{p}{,} \PY{p}{]}
+        \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{Y\PYZus{}complete}\PY{p}{[}\PY{n}{test\PYZus{}size}\PY{p}{:}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{]}
+        \PY{n}{D} \PY{o}{=} \PY{n}{Y\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{Y\PYZus{}train}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Training data}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{Y\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticks}\PY{p}{(}\PY{n}{ticks} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{labels} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{ds}\PY{p}{,} \PY{n}{rotation} \PY{o}{=} \PY{l+m+mi}{45}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total size of emails in GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Let's now develop a Gaussian Process model with a Spectral Mixture (SM)
+kernel proposed by Wilson (2014). This is because the SM kernel is
+capable of capturing hidden structure with data without hard cording
+features in a kernel.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Trains a model with a spectral mixture kernel, given an ndarray of }
+         \PY{c+c1}{\PYZsh{} 2Q frequencies and lengthscales}
+         
+         \PY{n}{Q} \PY{o}{=} \PY{l+m+mi}{10} \PY{c+c1}{\PYZsh{} nr of terms in the sum}
+         \PY{n}{max\PYZus{}iters} \PY{o}{=} \PY{l+m+mi}{1000}
+         
+         \PY{k}{def} \PY{n+nf}{create\PYZus{}model}\PY{p}{(}\PY{n}{hypers}\PY{p}{)}\PY{p}{:}
+             \PY{n}{f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{clip}\PY{p}{(}\PY{n}{hypers}\PY{p}{[}\PY{p}{:}\PY{n}{Q}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+             \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n}{Q}\PY{p}{)} \PY{o}{/} \PY{n}{Q}
+             \PY{n}{lengths} \PY{o}{=} \PY{n}{hypers}\PY{p}{[}\PY{n}{Q}\PY{p}{:}\PY{p}{]}
+         
+             \PY{n}{kterms} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{Q}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{rbf} \PY{o}{=} \PY{n}{gpflow}\PY{o}{.}\PY{n}{kernels}\PY{o}{.}\PY{n}{RBF}\PY{p}{(}\PY{n}{D}\PY{p}{,} \PY{n}{lengthscales}\PY{o}{=}\PY{n}{lengths}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{variance}\PY{o}{=}\PY{l+m+mf}{1.}\PY{o}{/}\PY{n}{Q}\PY{p}{)}
+                 \PY{n}{rbf}\PY{o}{.}\PY{n}{lengthscales}\PY{o}{.}\PY{n}{transform} \PY{o}{=} \PY{n}{gpflow}\PY{o}{.}\PY{n}{transforms}\PY{o}{.}\PY{n}{Exp}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{cos} \PY{o}{=} \PY{n}{gpflow}\PY{o}{.}\PY{n}{kernels}\PY{o}{.}\PY{n}{Cosine}\PY{p}{(}\PY{n}{D}\PY{p}{,} \PY{n}{lengthscales}\PY{o}{=}\PY{n}{f}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{kterms}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rbf} \PY{o}{*} \PY{n}{cos}\PY{p}{)}
+         
+             \PY{n}{k} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{kterms}\PY{p}{)} \PY{o}{+} \PY{n}{gpflow}\PY{o}{.}\PY{n}{kernels}\PY{o}{.}\PY{n}{Linear}\PY{p}{(}\PY{n}{D}\PY{p}{)} \PY{o}{+} \PY{n}{gpflow}\PY{o}{.}\PY{n}{kernels}\PY{o}{.}\PY{n}{Bias}\PY{p}{(}\PY{n}{D}\PY{p}{)}
+             \PY{n}{m} \PY{o}{=} \PY{n}{gpflow}\PY{o}{.}\PY{n}{gpr}\PY{o}{.}\PY{n}{GPR}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{p}{,} \PY{n}{kern}\PY{o}{=}\PY{n}{k}\PY{p}{)}
+             \PY{k}{return} \PY{n}{m}
+         
+         \PY{n}{m} \PY{o}{=} \PY{n}{create\PYZus{}model}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{Q}\PY{p}{,}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    Let's perfrom inference through optimization of the likelihood.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         m.optimize(maxiter = max\PYZus{}iters)
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+CPU times: user 7.74 s, sys: 289 ms, total: 8.03 s
+Wall time: 7.61 s
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:}       fun: 20.868585670810997
+          hess\_inv: <43x43 LbfgsInvHessProduct with dtype=float64>
+               jac: array([  8.99958679e-06,   1.41339465e-05,   5.09060783e-05,
+                  6.72588106e-06,  -1.28315446e-08,   1.22652879e-05,
+                  5.09060783e-05,   6.72588106e-06,  -1.28315446e-08,
+                  1.22652879e-05,   5.09060783e-05,   6.72588106e-06,
+                 -1.28315446e-08,   1.22652879e-05,   5.09060783e-05,
+                  6.72588106e-06,  -1.28315446e-08,   1.22652879e-05,
+                  5.09060783e-05,   6.72588106e-06,  -1.28315446e-08,
+                  1.22652879e-05,   5.09060783e-05,   6.72588106e-06,
+                 -1.28315446e-08,   1.22652879e-05,   5.09060783e-05,
+                  6.72588106e-06,  -1.28315446e-08,   1.22652879e-05,
+                  5.09060783e-05,   6.72588106e-06,  -1.28315446e-08,
+                  1.22652879e-05,   5.09060783e-05,   6.72588106e-06,
+                 -1.28315446e-08,   1.22652879e-05,   5.09060783e-05,
+                  6.72588106e-06,  -1.28315446e-08,   1.22652879e-05,
+                  5.10663145e-06])
+           message: b'CONVERGENCE: REL\_REDUCTION\_OF\_F\_<=\_FACTR*EPSMCH'
+              nfev: 50
+               nit: 42
+            status: 0
+           success: True
+                 x: array([  2.1321322 ,  -1.88610378,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.63568472,   1.38389724,
+                 10.77485046,  -1.51730421,   0.26608891])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k}{def} \PY{n+nf}{plotprediction}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Perform prediction}
+             \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{m}\PY{o}{.}\PY{n}{predict\PYZus{}f}\PY{p}{(}\PY{n}{X\PYZus{}complete}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Plot}
+             \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{ax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticks}\PY{p}{(}\PY{n}{ticks} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{labels} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{ds}\PY{p}{,} \PY{n}{rotation} \PY{o}{=} \PY{l+m+mi}{45}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total size of emails in GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{Y\PYZus{}train}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{Y\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}complete}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{mu}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Predicted mean function}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{lower} \PY{o}{=} \PY{n}{mu} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+             \PY{n}{upper} \PY{o}{=} \PY{n}{mu} \PY{o}{+} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}complete}\PY{p}{,} \PY{n}{upper}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{X\PYZus{}complete}\PY{p}{,} \PY{n}{lower}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mf}{1.2}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{n}{X\PYZus{}complete}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lower}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{upper}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+                             \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{95}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{ Predicted credible interval}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{plotprediction}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The Figure above shows that the Gaussian process model with a spectral
+mixture kernel is able to capture the structure both in regions of the
+training and testing data. The 95\% predicted credible interval (CI)
+contains the "normal" size of email attachments for the duration of the
+measurements.
+
+    Let's calculate some performance measures such as the Root Mean Square
+Error (RMSE) and Mean Absolute Performance Error (MAPE).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Calculate the RMSE and MAPE}
+         \PY{k}{def} \PY{n+nf}{calculate\PYZus{}rmse}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{p}{:}
+             \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict\PYZus{}y}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+             \PY{n}{rmse} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{rmse}
+         
+         \PY{k}{def} \PY{n+nf}{calculate\PYZus{}mape}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{p}{:}
+             \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict\PYZus{}y}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+             \PY{n}{mape} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{absolute}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{o}{/}\PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{mape}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{calculate\PYZus{}rmse}\PY{p}{(}\PY{n}{model}\PY{o}{=}\PY{n}{m}\PY{p}{,} \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{Y\PYZus{}test}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}mape}\PY{p}{(}\PY{n}{model}\PY{o}{=}\PY{n}{m}\PY{p}{,} \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{Y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 1.2515806168637664
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 27.94536660649003
+\end{Verbatim}
+            
+    Let's estimate an ARIMA model was estimated using the
+\texttt{statsmodels} package for comparison.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k+kn}{import} \PY{n+nn}{itertools}
+         \PY{k+kn}{import} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{ma} \PY{k}{as} \PY{n+nn}{ma}
+         \PY{k+kn}{import} \PY{n+nn}{warnings}
+         \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{tsa}\PY{n+nn}{.}\PY{n+nn}{arima\PYZus{}model} \PY{k}{import} \PY{n}{ARIMA}
+         \PY{k+kn}{from} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{import} \PY{n}{LinAlgError}
+         
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}ARIMA\PYZus{}param\PYZus{}values}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Get best ARIMA values given data}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ignore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Values to try}
+             \PY{n}{p} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}
+             \PY{n}{d} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+             \PY{n}{q} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}
+             \PY{n}{results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+             \PY{k}{for} \PY{n}{pi}\PY{p}{,} \PY{n}{di}\PY{p}{,} \PY{n}{qi} \PY{o+ow}{in} \PY{n}{itertools}\PY{o}{.}\PY{n}{product}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{d}\PY{p}{,} \PY{n}{q}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{try}\PY{p}{:}
+                     \PY{n}{model} \PY{o}{=} \PY{n}{ARIMA}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{order}\PY{o}{=}\PY{p}{(}\PY{n}{pi}\PY{p}{,} \PY{n}{di}\PY{p}{,} \PY{n}{qi}\PY{p}{)}\PY{p}{)}
+                     \PY{n}{model\PYZus{}fit} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+                     \PY{n}{aic} \PY{o}{=} \PY{n}{model\PYZus{}fit}\PY{o}{.}\PY{n}{aic}
+                     \PY{k}{if} \PY{o+ow}{not} \PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{aic}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{pi}\PY{p}{,}\PY{n}{di}\PY{p}{,}\PY{n}{qi}\PY{p}{)}\PY{p}{,} \PY{n}{aic}\PY{p}{,} \PY{n}{model\PYZus{}fit}\PY{p}{)}\PY{p}{)}
+                 \PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:}
+                     \PY{k}{pass}
+                 \PY{k}{except} \PY{n}{LinAlgError}\PY{p}{:}
+                     \PY{k}{pass}
+             \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{default}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{return} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{results}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/demaasit/anaconda3/lib/python3.6/site-packages/statsmodels/compat/pandas.py:56: FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. Please use the pandas.tseries module instead.
+  from pandas.core import datetools
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} Make prediction}
+         \PY{n}{steps} \PY{o}{=} \PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{params}\PY{p}{,} \PY{n}{aic}\PY{p}{,} \PY{n}{model\PYZus{}fit} \PY{o}{=} \PY{n}{get\PYZus{}ARIMA\PYZus{}param\PYZus{}values}\PY{p}{(}\PY{n}{y} \PY{o}{=} \PY{n}{Y\PYZus{}train}\PY{p}{)}
+         \PY{n}{mu}\PY{p}{,} \PY{n}{stderr}\PY{p}{,} \PY{n}{conf\PYZus{}int} \PY{o}{=} \PY{n}{model\PYZus{}fit}\PY{o}{.}\PY{n}{forecast}\PY{p}{(}\PY{n}{steps} \PY{o}{=} \PY{n}{steps}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
+         \PY{n}{params}\PY{p}{,} \PY{n}{aic}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{stderr}\PY{p}{,} \PY{n}{conf\PYZus{}int}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} ((0, 1, 0),
+          47.811434155792767,
+          array([ 6.475238,  7.047388,  7.619538]),
+          array([ 2.16329641,  3.05936312,  3.7469393 ]),
+          array([[  2.23525495,  10.71522105],
+                 [  1.05114646,  13.04362954],
+                 [  0.27567193,  14.96340407]]))
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{def} \PY{n+nf}{plotprediction\PYZus{}arima}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{:}
+             \PY{n}{mu}\PY{p}{,} \PY{n}{stderr}\PY{p}{,} \PY{n}{conf\PYZus{}int} \PY{o}{=} \PY{n}{m}\PY{o}{.}\PY{n}{forecast}\PY{p}{(}\PY{n}{steps}\PY{o}{=}\PY{n}{steps}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Plot}
+             \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{ax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticks}\PY{p}{(}\PY{n}{ticks} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{labels} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{ds}\PY{p}{,} \PY{n}{rotation} \PY{o}{=} \PY{l+m+mi}{45}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Time}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total size of emails in GB}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{mu}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Predicted value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{lower} \PY{o}{=} \PY{n}{conf\PYZus{}int}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0} \PY{p}{]}
+             \PY{n}{upper} \PY{o}{=} \PY{n}{conf\PYZus{}int}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1} \PY{p}{]}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{upper}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{lower}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mf}{1.2}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lower}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{upper}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+                             \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s+s2}{onfidence interval}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{plotprediction\PYZus{}arima}\PY{p}{(}\PY{n}{m} \PY{o}{=} \PY{n}{model\PYZus{}fit}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The Figure above shows that the ARIMA model is poor at capturing the
+structure within the region of testing data. This finding suggests that
+ARIMA models have poor performance for small data without noticeable
+structure. The 95\% confidence interval for ARIMA is much wider than the
+GP model showing a high degree of uncertainty about the ARIMA
+predictions.
+
+    Let's calculate some performance measures such as the RMSE and MAPE for
+the ARIMA model.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Calculate the RMSE and MAPE}
+         \PY{k}{def} \PY{n+nf}{calculate\PYZus{}rmse\PYZus{}arima}\PY{p}{(}\PY{n}{mu}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{p}{:}
+             \PY{n}{rmse} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{rmse}
+         
+         \PY{k}{def} \PY{n+nf}{calculate\PYZus{}mape\PYZus{}arima}\PY{p}{(}\PY{n}{mu}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{p}{:}
+             \PY{n}{mape} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{absolute}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{o}{/}\PY{n}{Y\PYZus{}test}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{mape}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{calculate\PYZus{}rmse\PYZus{}arima}\PY{p}{(}\PY{n}{mu} \PY{o}{=} \PY{n}{mu}\PY{p}{,} \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{Y\PYZus{}test}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}mape\PYZus{}arima}\PY{p}{(}\PY{n}{mu} \PY{o}{=} \PY{n}{mu}\PY{p}{,} \PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{Y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 3.2019469508164868
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 93.44165723388285
+\end{Verbatim}
+            
+    The ARIMA model has a poor predictive performance compared to the
+Gaussian process model with a spectral mixture kernel
+
+    \subsection{Conclusions}\label{conclusions}
+
+This study proposed a Bayesian nonparametric framework to capture
+implicitly hidden structure in time-series having limited data. The
+proposed framework, a Gaussian process with a spectral mixture kernel,
+was applied to time-series process for insider-threat data. The proposed
+framework addresses two current challenges when analyzing quite noisy
+time-series having limited data whereby the time series are visualized
+for noticeable structure such as periodicity, growing or decreasing
+trends and hard coding them into pre-specified functional forms.
+Experiments demonstrated that results from this framework outperform
+traditional ARIMA when the time series does not have easily noticeable
+structure and is quite noisy. Future work will involve evaluating the
+proposed framework on other different types of insider-threat behavior.
+
+    \subsection{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Emaasit, D. and Johnson, M. (2018). Capturing Structure Implicitly
+  from Noisy Time-Series having Limited Data. arXiv preprint
+  arXiv:1803.05867.
+\item
+  Williams, C. K. and Rasmussen, C. E. (2006). Gaussian processes for
+  machine learning. the MIT Press, 2(3):4.
+\item
+  Knudde, N., van der Herten, J., Dhaene, T., \& Couckuyt, I. (2017).
+  GPflowOpt: A Bayesian Optimization Library using TensorFlow. arXiv
+  preprint arXiv:1711.03845.
+\item
+  Wilson, A. G. (2014). Covariance kernels for fast automatic pattern
+  discovery and extrapolation with Gaussian processes. University of
+  Cambridge.
+\item
+  Greitzer, F. L. and Ferryman, T. A. (2013). Methods and metrics for
+  evaluating analytic insider threat tools. In Security and Privacy
+  Workshops (SPW), 2013 IEEE, pages 90--97. IEEE.
+\item
+  Gheyas, I. A. and Abdallah, A. E. (2016). Detection and prediction of
+  insider threats to cybersecurity: a systematic literature review and
+  meta-analysis. Big Data Analytics, 1(1):6.
+\item
+  Veeramisti, N. K. (2016). A business intelligence framework for
+  network-level traffic safety analyses. PhD thesis, University of
+  Nevada, Las Vegas.
+\end{enumerate}
+
+    \subsection{Computing Environment}\label{computing-environment}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} print system information/setup}
+         \PY{o}{\PYZpc{}}\PY{k}{reload\PYZus{}ext} watermark
+         \PY{o}{\PYZpc{}}\PY{k}{watermark} \PYZhy{}v \PYZhy{}m \PYZhy{}p numpy,pandas,gpflowopt,gpflow,tensorflow,matplotlib,ipywidgets,seaborn \PYZhy{}g
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+CPython 3.6.3
+IPython 6.2.1
+
+numpy 1.13.3
+pandas 0.20.3
+gpflowopt 0.1.0
+gpflow 0.4.0
+tensorflow 1.4.1
+matplotlib 2.1.1
+ipywidgets 7.1.1
+seaborn 0.8.1
+
+compiler   : GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE\_401/final)
+system     : Darwin
+release    : 17.3.0
+machine    : x86\_64
+processor  : i386
+CPU cores  : 8
+interpreter: 64bit
+Git hash   : df453b6da183c9f8fd941eaa1696e68f9731c771
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
